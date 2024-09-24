@@ -119,6 +119,29 @@ def cpy(src, dst):
     else:
         print(f"Source {src} does not exist.")
 
+def move(src,dst):
+    if os.path.abspath(src) == os.path.abspath(dst):
+        print(f'It is our file(foldeer) current path')
+    elif os.path.exists(src) and os.path.exists(dst):
+        shutil.move(src,dst)
+    else:
+        print(f'path is not exist')
+
+def find(path, format):
+    match = []
+    if os.path.exists(path):
+        for root, dirs, files in os.walk(path):
+            for file in files:
+                if format.lower() == os.path.splitext(file)[1].lower():
+                    match.append(os.path.join(root, file))
+    else:
+        print(f'No such directory: {path}')
+        return
+    if match:
+        for name in match:
+            print(name)
+    else:
+        print(f'No files found with "{format}" format')
 
 
 
@@ -151,6 +174,10 @@ def main():
             rem_all(current_dir,args.rmr)
         if args.cp:
             cpy(args.cp[0],args.cp[1])
+        if args.mv:
+            move(args.mv[0],args.mv[1])
+        if args.find:
+            find(args.find[0],args.find[1])
 
 
         if args == "exit":
