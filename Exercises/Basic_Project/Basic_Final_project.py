@@ -133,7 +133,7 @@ def find(path, format):
         for root, dirs, files in os.walk(path):
             for file in files:
                 if format.lower() == os.path.splitext(file)[1].lower():
-                    match.append(os.path.join(root, file))
+                    match.append(os.path.join(file))
     else:
         print(f'No such directory: {path}')
         return
@@ -142,6 +142,15 @@ def find(path, format):
             print(name)
     else:
         print(f'No files found with "{format}" format')
+
+def contents(path):
+    if os.path.exists(path):
+        with open(path ,'r') as cont:
+            res = cont.read()
+            print(res)
+    else:
+        print(f'File Does not exist')
+
 
 
 
@@ -178,8 +187,8 @@ def main():
             move(args.mv[0],args.mv[1])
         if args.find:
             find(args.find[0],args.find[1])
-
-
+        if args.cat:
+            contents(args.cat)
         if args == "exit":
             print("Exiting...")
             break
