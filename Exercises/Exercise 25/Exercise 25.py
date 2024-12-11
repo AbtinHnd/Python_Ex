@@ -2,14 +2,7 @@ import mysql.connector
 from mysql.connector import errorcode
 
 # Establish database connection
-mydb = mysql.connector.connect(
-    host="127.0.0.1",
-    port=3306,
-    user="root",
-    password="Abtin.abtin1",
-    database="meaw",
-    auth_plugin="mysql_native_password"
-)
+
 mycursor = mydb.cursor()
 
 # Table creation statements
