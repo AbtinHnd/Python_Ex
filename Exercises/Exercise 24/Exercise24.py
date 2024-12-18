@@ -1,12 +1,7 @@
 import mysql.connector
 
 mydb = mysql.connector.connect(
-    host="127.0.0.1",
-    port=3306,
-    user="root",
-    password="Abtin.abtin1",
-    database="database_1",
-    auth_plugin="mysql_native_password"
+
 )
 
 mycursor = mydb.cursor()
